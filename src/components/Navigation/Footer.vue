@@ -1,13 +1,13 @@
-<template lang="html">
+<template>
   <div>
     <v-card
      class="flex"
      flat
      tile
-     v-if="enableSocialIcons"
+     color="#5cb85c"
      >
-     <v-card-title class="primary white--text">
-       <strong class="subheading">Get connected with me on social networks!</strong>
+     <v-card-title class="white--text">
+       <strong class="subheading"><v-icon>mdi-watch</v-icon> Blog Wacthes</strong>
        <v-spacer></v-spacer>
        <v-btn
          v-for="(icon, i) in socialIcons"
@@ -22,20 +22,9 @@
    </v-card>
     <v-footer
       height="auto"
-      color="primary darken-1">
-      <v-layout row wrap>
-        <v-flex
-        class="attribution"
-          text-xs-center
-          text-sm-left
-          white--text
-          xs12
-          sm6
-          pl-3
-        >
-          Made with <v-icon small color="red lighten-1">mdi-heart</v-icon> by <a href="https://www.aaronvail.io?ref=cosmicify" target="_blank">Aaron Vail</a> and <a href="https://vuetifyjs.com?ref=cosmicify" target="_blank">Vuetify</a> | Proudly Powered by <a href="https://cosmicjs.com/?ref=SJHUGTXvf" target="_blank">Cosmic JS</a>
-        </v-flex>
-        <v-flex v-if="footerCopyright"
+      color="#5cb85c">
+      <v-layout >
+        <v-flex 
         class="attribution"
         text-xs-center
         text-sm-right
@@ -44,7 +33,7 @@
         sm6
         pr-3
         >
-        {{ footerCopyright }} {{ getCurrentYear }}
+        All rights reserved @ {{ getCurrentYear }}
       </v-flex>
       </v-layout>
     </v-footer>
@@ -55,23 +44,31 @@
 import { mapGetters } from 'vuex'
 export default {
   data: () => ({
-    //
+    socialIcons:[{
+            "profile_url": "https://www.facebook.com",
+            "icon_key": "mdi-facebook",
+        },
+        {
+            "profile_url": "https://www.twitter.com",
+            "icon_key": "mdi-twitter",
+        },
+        {
+            "profile_url": "https://www.linkedin.com",
+            "icon_key": "mdi-linkedin",
+        },
+        {
+            "profile_url": "https://www.instagram.com",
+            "icon_key": "mdi-instagram",
+        },
+        {
+            "profile_url": "https://www.github.com",
+            "icon_key": "mdi-github-face",
+        }]
   }),
   computed: {
     ...mapGetters([
       'menu',
-      'getSocialSettings',
-      'getSettings'
     ]),
-    footerCopyright () {
-      return this.getSettings.metadata.footer_copyright
-    },
-    enableSocialIcons () {
-      return this.getSocialSettings.metadata.enable_social_profile_section
-    },
-    socialIcons () {
-      return this.getSocialSettings.metadata.social_profiles
-    },
     getCurrentYear () {
       return (new Date()).getFullYear()
     }

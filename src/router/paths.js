@@ -11,6 +11,10 @@ function loadView (view) {
   return () => import(/* webpackChunkName: "view-[request]" */ `@/views/${view}.vue`)
 }
 
+function loadComponents (view) {
+    return () => import(/* webpackChunkName: "view-[request]" */ `@/components/${view}.vue`)
+}
+
 export default [
   {
     path: '/',
@@ -23,14 +27,35 @@ export default [
     component: loadView('Home')
   },
   {
-    path: '/about',
-    name: 'About',
-    component: loadView('About')
+    path: '/maintenance-local-post',
+    component: loadComponents('LocalPosts/LocalMaintenancePost')
   },
   {
-    path: '/contact',
-    name: 'Contact',
-    component: loadView('Contact')
+    path: '/maintenance-local-post/:id',
+    component: loadComponents('LocalPosts/LocalMaintenancePost')
+  },
+  {
+    path: '/plus/:id',
+    name: 'RemotePlus',
+    component: loadView('RemotePlus')
+  },
+  {
+    path: '/maintenance-remote-plus',
+    component: loadComponents('RemotePlus/RemotePlusMaintenance')
+  },
+  {
+    path: '/maintenance-remote-plus/:id',
+    component: loadComponents('RemotePlus/RemotePlusMaintenance')
+  },
+  {
+    path: '/remote-post',
+    name: 'remotePost',
+    component: loadView('RemotePost')
+  },
+  {
+    path: '/remote-plus',
+    name: 'RemotePlus',
+    component: loadView('RemotePlus')
   },
   {
     path: '/404',

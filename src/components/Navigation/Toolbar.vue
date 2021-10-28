@@ -1,19 +1,19 @@
-<template lang="html">
+<template >
   <div>
-    <v-toolbar fixed app :color="color">
-      <v-toolbar-side-icon
+    <v-app-bar fixed app :color="color">
+      <v-app-bar-nav-icon
       @click.stop="onDrawer"
-      class="hidden-md-and-up"></v-toolbar-side-icon>
+      class="hidden-md-and-up"></v-app-bar-nav-icon>
       <router-link to="/" exact class="black--text">
-        <img v-if="getSettings.metadata.app_logo.imgix_url" :src="getSettings.metadata.app_logo.imgix_url" style="max-height:38px;" />
-        <v-toolbar-title v-else class="headline text-uppercase">
-          {{ toolbarTitle }}
-        </v-toolbar-title>
+        <div class="headline white--text" >
+          <v-icon>mdi-watch</v-icon> Blog
+        </div>
       </router-link>
       <v-spacer></v-spacer>
       <v-toolbar-items class="hidden-sm-and-down">
         <v-btn
-        flat
+        text
+        class="white--text"
         v-for="(item, i) in this.menu"
         :key="i"
         router
@@ -22,7 +22,7 @@
           {{item.title}}
         </v-btn>
       </v-toolbar-items>
-    </v-toolbar>
+    </v-app-bar>
     <Drawer></Drawer>
   </div>
 </template>
@@ -61,8 +61,11 @@ export default {
 }
 </script>
 
-<style lang="css" scoped>
+<style lang="scss" scoped>
 a {
   text-decoration: none;
+}
+div.v-app-bar-title__content {
+    width: 90px!important;
 }
 </style>

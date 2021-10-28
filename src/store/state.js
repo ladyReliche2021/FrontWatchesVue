@@ -1,23 +1,22 @@
 // https://vuex.vuejs.org/en/state.html
 
 export default {
-  drawer: false,
-  postDialog: false,
-  activePost: null,
-  status: {
-    loading: false,
-    success: false,
-    error: false
-  },
-  shareLinks: [],
-  posts: [],
-  comments: [],
-  postComments: [],
-  menu: [
-    { icon: 'mdi-home-outline', title: 'Home', link: '/' },
-    { icon: 'mdi-information-outline', title: 'About', link: '/about' },
-    { icon: 'mdi-email-outline', title: 'Contact', link: '/contact' }
-  ],
-  settings: {},
-  socialSettings: {}
+    plushDialog: false,
+    drawer: false,
+
+    postDialog: false,
+    plusRemoteDialog:false,
+    activePost: null,
+    remoteActivePlus:null,
+
+    status: {
+        loading: false,
+        success: false,
+        error: false
+    },
+    menu: [
+        { icon: 'mdi-home-outline', title: 'Local', link: '/' },
+        { icon: 'mdi-newspaper', title: 'G News', link: '/remote-post' },
+        { icon: 'mdi-server', title: 'Api .Net', link: '/remote-plus' }
+    ],
 }
