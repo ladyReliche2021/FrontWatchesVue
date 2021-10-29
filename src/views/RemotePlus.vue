@@ -32,11 +32,10 @@ export default {
   components: {
     RemotePlusListItem
   },
-  mounted () {
+  async mounted () {
     
     this.page = 1;
-    // const {data} = await this.$store.dispatch('getAll');
-    const {data} = null;
+    const {data} = await this.$store.dispatch('getAll');
     this.tempRemotePlus = data == null ? [] : data;
     this.getRemotePlus = this.tempRemotePlus.slice(0, this.itemPerPage);
 
@@ -50,14 +49,12 @@ export default {
     add(){
         this.$router.push('/maintenance-remote-plus');
     },
-    remove(item){
-        const index = this.getRemotePlus.findIndex(x => x.id == item.id);
-        this.getRemotePlus.splice(index,1);
-        localStorage.removeItem('listComment');
-        localStorage.setItem('listComment',JSON.stringify(this.getRemotePlus));
+    async remove(item){
+        await this.$store.dispatch('delete',item);
+        window.location.reload();
     },
     pagination(page){
-        this.getRemotePlus = this.tempRemotePlus.slice(0, this.itemPerPage * page);
+        this.getRemotePlus = this.tempRemotePlus.slice(page == 1 ? 0 : this.itemPerPage, this.itemPerPage * page);
     }
   },
   computed: {
@@ -66,7 +63,7 @@ export default {
     ]),
   },
   metaInfo: {
-    title: 'Home',
+    title: 'Remote Plus',
     titleTemplate: '%s | '+process.env.VUE_APP_TITLE
   }
 }

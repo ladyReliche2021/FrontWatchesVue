@@ -7,7 +7,7 @@
           <v-btn icon dark @click.stop="handleCloseDialog()">
             <v-icon>close</v-icon>
           </v-btn>
-          <v-toolbar-title>New Item</v-toolbar-title>
+          <v-toolbar-title>Maintenance</v-toolbar-title>
           <v-spacer></v-spacer>
           <v-btn type="submit" outlined rounded  >Save</v-btn>
           <v-toolbar-items>

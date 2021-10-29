@@ -6,7 +6,7 @@
       class="hidden-md-and-up"></v-app-bar-nav-icon>
       <router-link to="/" exact class="black--text">
         <div class="headline white--text" >
-          <v-icon>mdi-watch</v-icon> Blog
+          <v-icon>mdi-watch</v-icon> <strong>Blog</strong>
         </div>
       </router-link>
       <v-spacer></v-spacer>

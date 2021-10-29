@@ -27,7 +27,8 @@ export default {
         page:1,
         itemPerPage:5,
         getPosts:[],
-        tempPost:[]
+        tempPost:[],
+        currentLimitPage:0,
   }),
   components: {
     LocalPostListItem
@@ -55,7 +56,7 @@ export default {
         localStorage.setItem('listComment',JSON.stringify(this.getPosts));
     },
     pagination(page){
-        this.getPosts = this.tempPost.slice(0, this.itemPerPage * page);
+        this.getPosts = this.tempPost.slice(page == 1 ? 0 : this.itemPerPage, this.itemPerPage * page);
     }
   },
   computed: {
@@ -64,7 +65,7 @@ export default {
     ]),
   },
   metaInfo: {
-    title: 'Home',
+    title: 'Local',
     titleTemplate: '%s | '+process.env.VUE_APP_TITLE
   }
 }

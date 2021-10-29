@@ -56,7 +56,7 @@ export default {
     }
   },
   metaInfo: {
-    title: 'Remote',
+    title: 'Remote Post',
     titleTemplate: '%s | '+process.env.VUE_APP_TITLE
   }
 }

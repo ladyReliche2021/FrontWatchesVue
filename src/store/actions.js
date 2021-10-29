@@ -10,26 +10,27 @@ export default {
 
     async getAll({commit}) {
 		commit('SUCCESS')
-        return Axios.get(process.env.VUE_APP_BASE_URL_API_BLOG + "/PostModels");
+        return Axios.get(process.env.VUE_APP_BASE_URL_API_BLOG + "/BlogModels");
 	},
 
     async getById({commit},id){
         commit('SUCCESS')
-        return Axios.get(process.env.VUE_APP_BASE_URL_API_BLOG + "/PostModels/"+id);
+        return Axios.get(process.env.VUE_APP_BASE_URL_API_BLOG + "/BlogModels/"+id);
     },
 
     async update({commit},model){
         commit('SUCCESS')
-        return Axios.put(process.env.VUE_APP_BASE_URL_API_BLOG + "/PostModels/"+model.id, JSON.stringify(model));
+        return Axios.put(process.env.VUE_APP_BASE_URL_API_BLOG + "/BlogModels/"+model.id, JSON.stringify(model),{headers: { 'Content-Type': 'application/json' }});
     },
 
-    async create({commit},model){
+    async create({commit},model,){
+        delete model.id;
         commit('SUCCESS')
-        return Axios.post(process.env.VUE_APP_BASE_URL_API_BLOG + "/PostModels", JSON.stringify(model));
+        return Axios.post(process.env.VUE_APP_BASE_URL_API_BLOG + "/BlogModels", JSON.stringify(model),{headers: { 'Content-Type': 'application/json' }});
     },
 
     async delete({commit},model){
         commit('SUCCESS')
-        return Axios.delete(process.env.VUE_APP_BASE_URL_API_BLOG + "/PostModels/" +model.id);
+        return Axios.delete(process.env.VUE_APP_BASE_URL_API_BLOG + "/BlogModels/" +model.id,{headers: { 'Content-Type': 'application/json' }});
     }
 }

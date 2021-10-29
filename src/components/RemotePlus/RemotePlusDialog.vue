@@ -1,6 +1,6 @@
 <template>
   <v-row>
-    <v-dialog v-model="postDialog" fullscreen transition="dialog-bottom-transition">
+    <v-dialog v-model="postDialog" fullscreen transition="dialog-bottom-transition" class="pt-12">
       <v-flex xs12 md8 offset-md2 lg6 offset-lg3>
       <v-card v-if="this.article">
         <v-toolbar dark fixed color="primary">

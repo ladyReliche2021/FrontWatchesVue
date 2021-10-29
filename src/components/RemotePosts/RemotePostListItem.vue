@@ -9,7 +9,7 @@
                 <v-container fill-height fluid>
                 <v-layout fill-height>
                     <v-flex xs12 align-end flexbox>
-                    <h2 class="headline font-weight-bold" style="text-shadow: 0px 2px 5px #222;">{{ article.title }}</h2>
+                    <h2 class=" font-weight-bold" style="text-shadow: 0px 2px 5px #222; font-size:16px">{{ article.title }}</h2>
                     </v-flex>
                 </v-layout>
                 </v-container>
@@ -26,7 +26,7 @@
                 <h6 class="grey--text h3" v-if="article.source.name">{{ article.publishedAt | date }} 
                     by {{ article.author }}</h6>
                 <h6 class="grey--text h3" v-else>{{ article.publishedAt | date }}</h6>
-                <h5>
+                <h5 style="font-size:14px">
                     {{ article.content | truncate(200) | tailing('...') }}
                 </h5>
                 </div>

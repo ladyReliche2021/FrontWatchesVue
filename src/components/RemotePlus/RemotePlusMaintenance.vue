@@ -7,7 +7,7 @@
           <v-btn icon dark @click.stop="handleCloseDialog()">
             <v-icon>close</v-icon>
           </v-btn>
-          <v-toolbar-title>New Item</v-toolbar-title>
+          <v-toolbar-title>Maintenance</v-toolbar-title>
           <v-spacer></v-spacer>
           <v-btn type="submit" outlined rounded  >Save</v-btn>
           <v-toolbar-items>
@@ -95,39 +95,23 @@ export default {
   }),
   async created(){
         const id = this.$route.params && this.$route.params.id;
-        const data = JSON.parse( localStorage.getItem('listComment'));
-        this.posts = data == null ? []: data;  
-         if(id > 0){
-            this.newComment = this.posts.find(x => x.id == id);
-         }
+        if(id > 0){
+            const {data} = await this.$store.dispatch('getById',id);
+            this.newComment = data;  
+        }
   },
   methods: {
-    postComment () {
+    async postComment () {
       if (this.$refs.commentForm.validate()) {
         if(this.newComment.id > 0){
-            const index = this.posts.findIndex(x => x.id == this.newComment.id);
-            this.posts.splice(index,1,this.newComment);
-            localStorage.removeItem('listComment');
-            localStorage.setItem('listComment',JSON.stringify(this.posts));
+            await this.$store.dispatch('update',this.newComment);
         }else{
-            const max = this.getMaxIdentificacion(this.posts);
-            this.newComment.id = max + 1;
-            const today  = new Date();
+            let today = new Date();
             this.newComment.publishAt = today.toLocaleDateString("en-US");
-            this.posts.push(this.newComment);
-            localStorage.removeItem('listComment');
-            localStorage.setItem('listComment',JSON.stringify(this.posts));
+            await this.$store.dispatch('create',this.newComment);
         }
         this.$router.go(-1)
       } else { return }
-    },
-    getMaxIdentificacion(array){
-        if(array.length > 0){
-            let arrayId = [];
-            arrayId = array.map(x => x.id);
-            return Math.max.apply(null, arrayId);
-        }
-        return 0;
     },
     handleCloseDialog () {
       this.$router.go(-1)
